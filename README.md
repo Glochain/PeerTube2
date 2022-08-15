@@ -1,5 +1,9 @@
 # PeerTube
 
+## Introduction
+A video streaming community based on the Livepeer protocol and IPFS/Filecoin. Assets are stored on IPFS using NFT.Storage. Metadata generted are stired onchain.
+
+
 ## Description
 A marketplace of videos NFTs where users, can purchase video NFTs. They can buy and sell theses NFTs for profit in the marketplace. These NFT are also visible on OpenSea, Rarible etc.
 
