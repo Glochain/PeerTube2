@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ethers } from 'ethers'
-import { create as ipfsHttpClient } from 'ipfs-http-client'
+import { NFTStorage } from "nft.storage";
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 
 import {
   marketplaceAddress
@@ -36,18 +36,19 @@ export default function CreateItem() {
     const { name, description, price } = formInput
     if (!name || !description || !price || !fileUrl) return
     /* first, upload to IPFS */
-    const data = JSON.stringify({
-      name, description, image: fileUrl
-    })
+    const nftStorage = new NFTStorage({ token: APIKEY, });
     try {
-      const added = await client.add(data)
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      /* after file is uploaded to IPFS, return the URL to use it in the transaction */
-      return url
+      const metaData = await nftStorage.store({
+        name,
+        description: name,
+        image: inputFile,
+      });
+      console.log("metadata is: ", { metaData });
+      return metaData;
     } catch (error) {
-      console.log('Error uploading file: ', error)
-    }  
-  }
+      console.log("Error Uploading Content", error);
+    }
+  };
 
   async function listNFTForSale() {
     const url = await uploadToIPFS()
