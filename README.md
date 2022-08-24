@@ -47,5 +47,5 @@ npm run dev
 deployed to: deployed to: 0xBd565918BB2f031Bf5CC85332B33a9d604c0d3A6
 
 ## Subgraph
-Subgraph : https://thegraph.com/hosted-service/subgraph/holyaustin/peertube
+Subgraph : https://thegraph.com/hosted-service/subgraph/glochain/peertube
 
